@@ -40,6 +40,10 @@ jobs:
           poetry lock
           poetry install --no-ansi
 
+      - name: Poetry build
+        run: |
+          poetry build
+
       - name: Poetry publish
         run: |
-          poetry publish --build -r testpypi
+          poetry publish -r testpypi
