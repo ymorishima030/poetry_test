@@ -28,3 +28,9 @@ jobs:
         with:
           path: .venv
           key: venv-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        if: steps.venv-cache.outputs.cache-hit != 'true'
+        run: |
+          poetry lock
+          poetry install --no-ansi

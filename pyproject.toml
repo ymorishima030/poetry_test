@@ -38,10 +38,6 @@ enable = true
 format = "{base}"
 pattern = "^(?P<base>\\d+\\.\\d+\\.\\d+)$"
 
-[tool.semantic_release]
-version_variable = "pyproject.toml:version"
-version_source = "tag"
-
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.2.0"]
 build-backend = "poetry_dynamic_versioning.backend"
