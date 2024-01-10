@@ -29,8 +29,17 @@ jobs:
           path: .venv
           key: venv-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
+      - name: Poetry config set
+        run: |
+          poetry config repositories.testpypi https://test.pypi.org/legacy/
+          poetry config http-basic.testpypi __token__ ${{ secrets.TEST_PYPI_PASSWORD }}
+
       - name: Install dependencies
         if: steps.venv-cache.outputs.cache-hit != 'true'
         run: |
           poetry lock
           poetry install --no-ansi
+
+      - name: Poetry publish
+        run: |
+          poetry publish --build -r testpypi
