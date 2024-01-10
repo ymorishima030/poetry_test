@@ -7,11 +7,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.11]
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
+
       - name: Install Poetry Action
         uses: snok/install-poetry@v1
+
+      - name: Cashe venv
+        uses: actions/cache@v2
+        id: venv-cache
+        with:
+          path: .venv
+          key: venv-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
