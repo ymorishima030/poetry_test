@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: testpypi
-      url: https://test.pypi.org/project/poetry-t-ymorishima030
+      url: https://test.pypi.org/p/poetry-t-ymorishima030
     permissions:
       id-token: write
     strategy:
@@ -45,3 +45,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           skip-existing: true
+          repository-url: https://test.pypi.org/legacy/
