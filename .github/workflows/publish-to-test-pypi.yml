@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment:
-      name: testpypi
+      name: release
       url: https://test.pypi.org/p/poetry-t-ymorishima030
     permissions:
       id-token: write
@@ -46,4 +46,3 @@ jobs:
         with:
           skip-existing: true
           repository-url: https://test.pypi.org/legacy/
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
